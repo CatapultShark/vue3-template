@@ -1,0 +1,163 @@
+//  全局样式
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  font-size: 14px;
+  list-style-type: none;
+  box-sizing: border-box;
+  outline: none;
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: #fff;
+  overflow: hidden;
+}
+
+a {
+  color: #343440;
+  text-decoration: none;
+  box-sizing: border-box;
+}
+
+// 清除浮动
+.clearfix {
+  &::after {
+    content: '';
+    display: table;
+    height: 0;
+    line-height: 0;
+    visibility: hidden;
+    clear: both;
+  }
+}
+
+// 图标
+.iconfont {
+  font-size: 20px !important;
+  color: #5cd9e8;
+}
+
+//浮动
+.float-r {
+  float: right;
+}
+
+//浮动
+.float-l {
+  float: left;
+}
+
+// 字体加粗
+.fw-b {
+  font-weight: bold;
+}
+
+//文章一行显示，多余省略号显示
+.title-item {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+// 半透明色
+.bg-color-translucence {
+  background-color: rgba(255, 255, 255, 0.13);
+}
+
+.action-link {
+  font-family: PingFangSC-Regular;
+  font-size: 14px;
+  color: #47a5e7;
+  cursor: pointer;
+}
+
+.align-center {
+  text-align: center;
+}
+
+.align-right {
+  text-align: right !important;
+}
+
+// 12-28
+.font(@i) when(@i <= 28) {
+  font@{i} {
+    font-size: @i + 0px !important;
+  }
+  .font((@i + 2));
+}
+
+.font(12);
+
+.width(@i) when(@i <= 50) {
+  .pt@{i} {
+    padding-top: @i + 0px !important;
+  }
+  .pr@{i} {
+    padding-right: @i + 0px !important;
+  }
+  .pb@{i} {
+    padding-bottom: @i + 0px !important;
+  }
+  .pl@{i} {
+    padding-left: @i + 0px !important;
+  }
+  .p@{i} {
+    padding: @i + 0px !important;
+  }
+  .mt@{i} {
+    margin-top: @i + 0px !important;
+  }
+  .mr@{i} {
+    margin-right: @i + 0px !important;
+  }
+  .mb@{i} {
+    margin-bottom: @i + 0px !important;
+  }
+  .ml@{i} {
+    margin-left: @i + 0px !important;
+  }
+  .m@{i} {
+    margin: @i + 0px !important;
+  }
+  .width((@i + 5));
+}
+
+.width(5);
+
+.flex {
+  display: flex;
+}
+
+.flex-row {
+  display: flex;
+  flex-direction: row;
+}
+
+.space-between {
+  justify-content: space-between;
+}
+
+.align-items-center {
+  align-items: center;
+}
+
+.flex-end {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.flex-align-items-center {
+  display: flex;
+  align-items: center;
+}
+
+// flex布局垂直居中
+.flex-align-center {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+}
