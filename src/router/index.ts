@@ -6,16 +6,32 @@ import * as PAGE_URL from '@/constant/page-url-constants';
 const routes: RouteRecordRaw[] = [
   {
     path: '/',
-    redirect: PAGE_URL.PAGE_URL_LOGIN
+    redirect: PAGE_URL.PAGE_URL_LOGIC_FLOW_1
   },
+
   {
-    path: PAGE_URL.PAGE_URL_LOGIN,
-    name: PAGE_URL.PAGE_URL_LOGIN,
-    meta: {
-      title: '登录'
-    },
-    component: () => import('@/components/HelloWorld.vue')
-  }
+    path: '/layout',
+    name: '/layout',
+    component: () => import('@/pages/layout.vue'),
+    children: [
+      {
+        path: PAGE_URL.PAGE_URL_LOGIC_FLOW_1,
+        name: PAGE_URL.PAGE_URL_LOGIC_FLOW_1,
+        meta: {
+          title: 'logic-flow'
+        },
+        component: () => import('@/pages/logic-flow.vue')
+      },
+      {
+        path: PAGE_URL.PAGE_URL_LOGIC_FLOW_2,
+        name: PAGE_URL.PAGE_URL_LOGIC_FLOW_2,
+        meta: {
+          title: 'logic-flow'
+        },
+        component: () => import('@/pages/logic-flow-2.vue')
+      },
+    ]
+  },
 ];
 
 const router = createRouter({

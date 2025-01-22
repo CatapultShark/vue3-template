@@ -5,3 +5,5 @@ declare module '*.vue' {
   const component: DefineComponent<{}, {}, any>;
   export default component;
 }
+// src/types/global.d.ts
+declare module 'virtual:svg-icons-register';
