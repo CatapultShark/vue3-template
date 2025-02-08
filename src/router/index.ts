@@ -30,8 +30,16 @@ const routes: RouteRecordRaw[] = [
         },
         component: () => import('@/pages/logic-flow-2.vue')
       },
+      {
+        path: PAGE_URL.PAGE_URL_LOGIC_FLOW_3,
+        name: PAGE_URL.PAGE_URL_LOGIC_FLOW_3,
+        meta: {
+          title: 'logic-flow'
+        },
+        component: () => import('@/pages/logic-flow-3.vue')
+      }
     ]
-  },
+  }
 ];
 
 const router = createRouter({

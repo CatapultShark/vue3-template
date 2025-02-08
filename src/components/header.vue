@@ -70,6 +70,10 @@ const menuList = reactive([
     title: 'logicFlow-BPMN',
     path: PAGE_URL.PAGE_URL_LOGIC_FLOW_2
   },
+  {
+    title: 'logicFlow-SQL',
+    path: PAGE_URL.PAGE_URL_LOGIC_FLOW_3
+  }
 ]);
 
 const router = useRouter();
@@ -110,9 +114,7 @@ const dropDownList = reactive([
     title: '退出登录'
   }
 ]);
-const handleDropdownClick = (path: string) => {
-
-};
+const handleDropdownClick = (path: string) => {};
 </script>
 
 <style lang="less" scoped>
