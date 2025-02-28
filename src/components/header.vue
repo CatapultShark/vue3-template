@@ -73,6 +73,10 @@ const menuList = reactive([
   {
     title: 'logicFlow-SQL',
     path: PAGE_URL.PAGE_URL_LOGIC_FLOW_3
+  },
+  {
+    title: 'logicFlow-custom-bpmn',
+    path: PAGE_URL.PAGE_URL_LOGIC_FLOW_4
   }
 ]);
 

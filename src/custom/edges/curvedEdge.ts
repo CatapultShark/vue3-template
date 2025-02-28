@@ -236,6 +236,7 @@ class Model extends PolylineEdgeModel {
     style.strokeDasharray = '5 5';
     style.animationDuration = '30s';
     style.stroke = '#008000';
+    console.log(style, 'style');
 
     return style;
   }

@@ -1,5 +1,5 @@
 <template>
-  <div id="pattern">
+  <div id="pattern" class="pattern">
     <template v-for="(item, index) in patternConfig" :key="index">
       <SvgIcon :iconClass="item.class" @mousedown.native="item.fn" />
       <div>{{ item.label }}</div>
@@ -12,6 +12,7 @@
 
 <script setup lang="ts">
 // @ts-ignore
+import { update } from 'lodash-es';
 import SvgIcon from './SvgIcon.vue';
 import Tools from './Tools.vue';
 
@@ -37,10 +38,10 @@ function addNode(type: string, { text, properties }: any) {
 
 const patternConfig = [
   {
-    class: 'bpmn-icon-lane',
-    label: '注释',
+    class: 'bpmn-icon-script-task',
+    label: '脚本任务',
     fn: () => {
-      addNode('bpmn:subProcess', { text: '注释' });
+      addNode('bpmn:scriptTask', { text: '脚本任务' });
     }
   },
   {
@@ -99,6 +100,19 @@ const patternConfig = [
     }
   },
   {
+    class: 'bpmn-icon-gateway-complex',
+    label: '扩展网关',
+    fn: () => {
+      addNode('bpmn:complexGateway', {
+        text: '扩展网关',
+        properties: {
+          panels: ['variable'], // 关联面板
+          variable: '' // 变量
+        }
+      });
+    }
+  },
+  {
     class: 'bpmn-icon-user-task',
     label: '任务',
     fn: () => {
@@ -106,7 +120,9 @@ const patternConfig = [
         text: '任务',
         properties: {
           panels: ['multiInstance'], // 关联面板
-          flag: '任务'
+          flag: '任务',
+          databaseType: 'task',
+          type: 'task'
         }
       });
     }
@@ -121,7 +137,7 @@ lf &&
   });
 </script>
 
-<style lang="css">
+<style lang="less">
 #pattern {
   width: 60px;
   position: absolute;
@@ -138,6 +154,13 @@ lf &&
   color: #676768;
   user-select: none;
   border-radius: 5px;
+}
+.pattern__item {
+  padding: 5px 10px;
+  border: 1px solid #ff8b47;
+  border-radius: 5px;
+  margin-bottom: 5px;
+  cursor: pointer;
 }
 #pattern svg {
   margin-top: 10px;

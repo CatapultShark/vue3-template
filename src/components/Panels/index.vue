@@ -2,12 +2,15 @@
   <!-- <div class="panel-wrap" v-if="visible">
     <panels v-if="visible" :key="selectedOne" />
   </div> -->
-  <PanelDialog :key="selectedOne" v-if="visible" />
+  <!-- <PanelDialog :key="selectedOne" v-if="visible" /> -->
+  <SqlDialog :key="selectedOne" v-if="visible" />
 </template>
 
 <script setup lang="ts">
 import panels from './components/panels.vue';
 import PanelDialog from '@/components/panel-dialog.vue';
+
+import SqlDialog from '@/components/flow3/sql-dialog.vue';
 
 const props = defineProps({
   lf: {

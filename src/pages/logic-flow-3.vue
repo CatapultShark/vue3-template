@@ -24,6 +24,10 @@ import Tools from '@/components/flow3/tools.vue';
 import SqlElement from '@/components/flow3/sql-element';
 import SqlPanel from '@/components/flow3/sql-panel.vue';
 
+import HtmlEdge from '@/custom/edges/html-edge';
+
+import sqlEdge from '@/custom/edges/sql-edge';
+
 LogicFlow.use(BPMNAdapter);
 LogicFlow.use(BPMNElements);
 LogicFlow.use(Group);
@@ -46,39 +50,59 @@ const data: any = {
       x: 495,
       y: 170,
       properties: {
-        width: '200px',
-        height: '200px'
+        databaseType: 'SQL',
+        width: 300,
+        height: 145
       },
       text: {
         x: 495,
         y: 170,
-        value: '未定义'
+        value: 'SQL'
       }
     },
     {
       id: '57660605-cd10-4b0d-bd98-efe26c157c66',
       type: 'sql-element',
-      x: 939,
-      y: 170,
+      x: 961,
+      y: 317,
       properties: {
-        width: '200px',
-        height: '200px'
+        databaseType: 'MongoDB',
+        width: 300,
+        height: 145
       },
       text: {
-        x: 939,
-        y: 170,
-        value: '未定义'
+        x: 961,
+        y: 317,
+        value: 'MongoDB'
       }
+    },
+    {
+      type: 'rect',
+      x: 100,
+      y: 100,
+      text: '节点1',
+      id: 'node_id_1'
+    },
+    {
+      type: 'rect',
+      text: '节点2',
+      x: 100,
+      y: 300,
+      id: 'node_id_2'
     }
   ],
   edges: [
+    // {
+    //   id: 'edge_id_1',
+    //   type: 'html-edge',
+    //   sourceNodeId: 'node_id_1',
+    //   properties: {},
+    //   targetNodeId: 'node_id_2'
+    // },
     {
-      id: 'Flow_4d7a6f0',
-      type: 'polyline',
-      // type: 'bpmn:sequenceFlow',
-      // properties: {
-      //   isDefaultFlow: false
-      // },
+      id: '41f06120-3ef6-46f8-846c-b9c8bb0743b5',
+      type: 'sql-edge',
+      properties: {},
       sourceNodeId: '955cf7dc-fdde-4eba-9798-58297bd9540b',
       targetNodeId: '57660605-cd10-4b0d-bd98-efe26c157c66',
       sourceAnchorId: '955cf7dc-fdde-4eba-9798-58297bd9540b_1',
@@ -88,12 +112,12 @@ const data: any = {
         y: 170
       },
       endPoint: {
-        x: 789,
-        y: 170
+        x: 811,
+        y: 317
       },
       text: {
-        x: 726,
-        y: 170,
+        x: 728,
+        y: 243.5,
         value: '连接线'
       },
       pointsList: [
@@ -102,8 +126,16 @@ const data: any = {
           y: 170
         },
         {
-          x: 789,
+          x: 745,
           y: 170
+        },
+        {
+          x: 711,
+          y: 317
+        },
+        {
+          x: 811,
+          y: 317
         }
       ]
     }
@@ -119,8 +151,6 @@ onMounted(() => {
     stopScrollGraph: true, // 设置为 true 禁止滚动画布
     snapline: true // 对齐线
   });
-  // lf.render(data)
-  // lf.renderRawData(data);
 
   // 注册自定义 vue 节点
   // [
@@ -140,6 +170,18 @@ onMounted(() => {
 
   // 批量注册（html节点）
   lf.batchRegister([SqlElement]);
+  // 注册自定义边
+  lf.register(sqlEdge);
+  // lf.register(HtmlEdge);
+  // lf.setDefaultEdgeType('sql-edge');
+
+  lf.setTheme({
+    // 贝塞尔曲线
+    bezier: {
+      stroke: '#afafaf',
+      strokeWidth: 1
+    }
+  });
 
   lf.renderRawData(data);
 

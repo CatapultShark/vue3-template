@@ -5,8 +5,7 @@
       :key="index"
       @mousedown="startDrag(item)"
     >
-      <!-- <component :is="item.component"></component> -->
-      <div class="tools-item">{{ item.title }}</div>
+      <div class="tools__item">{{ item.title }}</div>
     </div>
     <hr style="width: 70%" />
     <div class="pointer" @click="showFlowData">查看数据</div>
@@ -15,7 +14,6 @@
 
 <script lang="ts" setup>
 import LogicFlow from '@logicflow/core';
-import SqlElement from './sql-element.vue';
 
 const props = defineProps({
   lf: {
@@ -29,15 +27,21 @@ const startDrag = (item: any) => {
   const { lf } = props;
   lf.dnd.startDrag({
     type: item.type,
-    text: item.title || '未定义'
+    text: item.title || '未定义',
+    properties: {
+      name: 'sql'
+    }
   });
 };
 
 const baseNodes = ref([
   {
+    type: 'rect',
+    title: '注释'
+  },
+  {
     type: 'sql-element',
-    title: 'SQL',
-    component: SqlElement
+    title: 'SQL'
   }
 ]);
 
@@ -65,7 +69,7 @@ const showFlowData = () => {
   user-select: none;
   border-radius: 5px;
 
-  .tools-item {
+  &__item {
     padding: 5px 10px;
     border: 1px solid #ff8b47;
     border-radius: 5px;

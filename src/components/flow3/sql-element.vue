@@ -1,6 +1,8 @@
 <template>
   <div class="sql-element">
-    <div class="sql-element__title">SQL</div>
+    <div class="sql-element__title">
+      {{ props.properties!.databaseType || '--' }}
+    </div>
     <el-row
       :gutter="20"
       class="sql-element__body"
@@ -78,7 +80,7 @@ onMounted(() => {});
   height: 100%;
   padding: 10px;
   border: 1px solid #ff8b47;
-  border-radius: 5px;
+  border-radius: 10px;
   box-sizing: border-box;
   background-color: #fff;
   &__title {

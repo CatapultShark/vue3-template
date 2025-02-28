@@ -12,7 +12,7 @@ const pathSrc = path.resolve(__dirname, 'src');
 const resolve = (dir: string) => path.join(__dirname, dir);
 
 const fePort = 1118;
-const serverOrigin = 'https://192.168.0.248';
+const serverOrigin = 'http://localhost:1110';
 
 // https://vite.dev/config/
 export default defineConfig({
@@ -55,8 +55,8 @@ export default defineConfig({
       // 指定要缓存的图标文件夹
       iconDirs: [path.resolve(process.cwd(), 'src/assets/icons')],
       // 执行icon name的格式
-      symbolId: '[name]',
-    }),
+      symbolId: '[name]'
+    })
   ],
   // 服务器设置
   server: {

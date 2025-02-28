@@ -37,6 +37,14 @@ const routes: RouteRecordRaw[] = [
           title: 'logic-flow'
         },
         component: () => import('@/pages/logic-flow-3.vue')
+      },
+      {
+        path: PAGE_URL.PAGE_URL_LOGIC_FLOW_4,
+        name: PAGE_URL.PAGE_URL_LOGIC_FLOW_4,
+        meta: {
+          title: 'logic-flow'
+        },
+        component: () => import('@/pages/logic-flow-4.vue')
       }
     ]
   }

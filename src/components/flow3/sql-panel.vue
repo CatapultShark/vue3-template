@@ -30,15 +30,12 @@ function panelVisible(type: 'node' | 'edge') {
   console.log('panelVisible', type);
   return (e: any) => {
     console.log('panelVisible', e, type);
-    // if (
-    //   e.data.type === 'bpmn:sequenceFlow' &&
-    //   !e.data.properties.conditionExpression &&
-    //   type == 'edge'
-    // ) {
-    //   lf.getEdgeModelById(e.data.id)?.setProperties({
-    //     conditionExpression: '1111'
-    //   });
-    // }
+    selectedOne.value = e.data.id;
+    selectedType.value = type;
+
+    if (e.data.type == 'rect') {
+      return;
+    }
     if (type === 'node') {
       if (visible.value) {
         if (e.data.id === selectedOne.value) {
@@ -56,12 +53,10 @@ function panelVisible(type: 'node' | 'edge') {
         edgeVisible.value = true;
       }
     }
-
-    selectedOne.value = e.data.id;
-    selectedType.value = type;
   };
 }
 const target: any = ref({});
+
 watchEffect(() => {
   target.value =
     selectedType.value === 'node'
@@ -71,6 +66,7 @@ watchEffect(() => {
 
 provide('target', target);
 
+// 监听
 lf.on('node:dbclick', panelVisible('node'));
 // lf.on('node:delete', panelVisible('node'));
 lf.on('blank:mousedown', (_e: any) => {

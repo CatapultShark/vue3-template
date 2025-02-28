@@ -72,8 +72,9 @@
 <script lang="ts" setup>
 import { ElMessageBox } from 'element-plus';
 
+const lf:any = inject('lf');
 const target: any = inject('target');
-console.log('dialog', target.value);
+console.log('edge-dialog', target.value);
 
 const tabActiveName = ref('详细信息');
 
@@ -102,22 +103,20 @@ const settingForm = reactive({
   threshold2: '1 GB',
   strategy: '不要负载均衡'
 })
-// const initData = () => {
-//   target.value.id && (form.id = target.value.id);
-//   target.value.text.value && (form.name = target.value.text.value);
-//   target.value.properties.timerType &&
-//     (form.timerType = target.value.properties.timerType);
-//   target.value.properties.timerValue &&
-//     (form.timerValue = target.value.properties.timerValue);
-//   target.value.properties.variable &&
-//     (form.variable = target.value.properties.variable);
-//   target.value.properties.conditionExpression &&
-//     (form.conditionExpression = target.value.properties.conditionExpression);
-//   target.value.properties.panels &&
-//     (form.panels = target.value.properties.panels);
-// };
 
-// initData();
+const sourceNode = lf.getNodeModelById(target.value.sourceNodeId);
+const targetNode = lf.getNodeModelById(target.value.targetNodeId)
+
+console.log('sourceNode', sourceNode)
+console.log('targetNode', targetNode)
+
+
+const initData = () => {
+  sourceNode.properties.databaseType && (form.form = sourceNode.properties.databaseType);
+  targetNode.properties.databaseType && (form.to = targetNode.properties.databaseType);
+};
+
+initData();
 
 const dialogVisible: any = inject('edgeVisible');
 

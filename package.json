@@ -16,6 +16,7 @@
     "@logicflow/engine": "^0.1.1",
     "@logicflow/extension": "^2.0.14",
     "@logicflow/vue-node-registry": "^1.0.12",
+    "axios": "^1.7.9",
     "dayjs": "^1.11.13",
     "element-plus": "^2.9.2",
     "lodash-es": "^4.17.21",

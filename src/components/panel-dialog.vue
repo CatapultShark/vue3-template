@@ -14,6 +14,17 @@
         >
           {{ form }}
           <el-form :model="form" label-width="auto">
+            <el-form-item label="任务类型">
+              <el-select v-model="form.taskType" placeholder="请选择任务类型">
+                <el-option
+                  v-for="item in taskOptions"
+                  :key="item.value"
+                  :label="item.label"
+                  :value="item.value"
+                >
+                </el-option>
+              </el-select>
+            </el-form-item>
             <el-form-item label="ID">
               <el-input v-model="form.id" disabled />
             </el-form-item>
@@ -22,6 +33,13 @@
                 v-model="form.name"
                 clearable
                 @input="handleChangeName"
+              />
+            </el-form-item>
+            <el-form-item label="类型" v-if="form.type">
+              <el-input
+                v-model="form.type"
+                clearable
+                @input="handleChangeType"
               />
             </el-form-item>
             <el-form-item
@@ -122,9 +140,34 @@ const handleClose = (done: () => void) => {
     });
 };
 
+const taskOptions = [
+  {
+    value: 'HandleHttpRequest',
+    label: 'HandleHttpRequest'
+  },
+  {
+    value: 'ExecuteSQL',
+    label: 'ExecuteSQL'
+  },
+  {
+    value: 'ConvertAvroToJSON',
+    label: 'ConvertAvroToJSON'
+  },
+  {
+    value: 'JoltTransformJSON',
+    label: 'JoltTransformJSON'
+  },
+  {
+    value: 'HandleHttpResponse',
+    label: 'HandleHttpResponse'
+  }
+];
+
 const form = reactive({
+  taskType: '',
   id: '',
   name: '',
+  type: '',
   desc: '',
   timerType: '',
   timerValue: '',
@@ -135,6 +178,7 @@ const form = reactive({
 const initData = () => {
   target.value.id && (form.id = target.value.id);
   target.value.text.value && (form.name = target.value.text.value);
+  target.value.properties.type && (form.type = target.value.properties.type);
   target.value.properties.timerType &&
     (form.timerType = target.value.properties.timerType);
   target.value.properties.timerValue &&
@@ -152,12 +196,16 @@ initData();
 const handleChangeName = (val: string) => {
   target.value.updateText(val);
 };
+const handleChangeType = (val: string) => {
+  target.value.setProperties({
+    type: val
+  });
+  form.type = val;
+};
 const timerTypeChange = (val: string) => {
   target.value.setProperties({
-    // timerType: e.target.value
     timerType: val
   });
-  // timerType.value = e.target.value;
   form.timerType = val;
 };
 
